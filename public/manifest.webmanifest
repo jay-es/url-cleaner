@@ -1,0 +1,20 @@
+{
+  "name": "URL Cleaner",
+  "share_target": {
+    "action": "/",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "text": "text"
+    }
+  },
+  "icons": [
+    {
+      "src": "icons8-cleaning-service-96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    }
+  ],
+  "start_url": "/",
+  "display": "minimal-ui"
+}
