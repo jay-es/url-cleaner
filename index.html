@@ -6,9 +6,43 @@
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>URL Cleaner</title>
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+
+      h1 {
+        font-size: 1rem;
+        text-align: center;
+      }
+
+      textarea {
+        width: 99%;
+        height: 5em;
+      }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <main v-scope v-cloak>
+      <h1>URL Cleaner</h1>
+      <textarea v-model="url"></textarea>
+      <a :href="href" target="_blank">{{href}}</a>
+    </main>
+
+    <script type="module">
+      import { createApp } from "https://unpkg.com/petite-vue@0.2.2/dist/petite-vue.es.js";
+      const searchParams = new URLSearchParams(window.location.search);
+
+      createApp({
+        url: searchParams.get("text") || "", // ?? は対応してないブラウザがある
+        get href() {
+          return this.url.replace(/[?#].*/, "");
+        },
+      }).mount();
+
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("sw.js").then(console.log);
+      }
+    </script>
   </body>
 </html>
