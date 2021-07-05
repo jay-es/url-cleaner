@@ -34,11 +34,15 @@
       const searchParams = new URLSearchParams(window.location.search);
 
       createApp({
-        url: searchParams.get("text") ?? "",
+        url: searchParams.get("text") || "", // ?? は対応してないブラウザがある
         get href() {
           return this.url.replace(/[?#].*/, "");
         },
       }).mount();
+
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("sw.js").then(console.log);
+      }
     </script>
   </body>
 </html>
