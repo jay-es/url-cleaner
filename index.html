@@ -20,13 +20,17 @@
         width: 99%;
         height: 5em;
       }
+
+      a {
+        word-break: break-all;
+      }
     </style>
   </head>
   <body>
     <main v-scope v-cloak>
       <h1>URL Cleaner</h1>
       <textarea v-model="url"></textarea>
-      <a :href="href" target="_blank">{{href}}</a>
+      <a :href="href" target="_blank">{{ href }}</a>
     </main>
 
     <script type="module">
